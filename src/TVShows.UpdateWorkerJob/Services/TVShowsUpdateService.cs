@@ -1,0 +1,134 @@
+﻿using Microsoft.Extensions.Logging;
+using TVShows.Caching;
+using TVShows.Core.Extentions;
+using TVShows.Core.Models;
+using TVShowsClientsAdapterService.MazeApi;
+
+namespace TVShowsUpdateWorkerJob.Services
+{
+    public class TVShowsUpdateService : ITVShowsUpdateService
+    {
+        private const int ShowBatches = 10;
+        private readonly ITVMazeService _tvMazeService;
+        private readonly ITVShowsCacheService _tvShowsCacheService;
+        private readonly ILogger<TVShowsUpdateService> _logger;
+
+        /// <summary>
+        /// TVShowsUpdateService
+        /// </summary>
+        /// <param name="tvShowsCacheService"></param>
+        /// <param name="tvMazeService"></param>
+        /// <param name="logger"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public TVShowsUpdateService(
+            ITVShowsCacheService tvShowsCacheService,
+            ITVMazeService tvMazeService,
+            ILogger<TVShowsUpdateService> logger)
+        {
+            _tvMazeService = tvMazeService ?? throw new ArgumentNullException(nameof(tvMazeService));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _tvShowsCacheService = tvShowsCacheService;
+        }
+
+        /// <summary>
+        /// AddNewShowsAsync
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task AddNewShowsAsync(CancellationToken cancellationToken)
+        {
+            var showsList = new List<Show>();
+            var pageIndex = 0;
+            var isShowsInfoAvailable = true;
+
+            try
+            {
+                while (isShowsInfoAvailable)
+                {
+                    var response = await _tvMazeService.GetShowsAsync(pageIndex, cancellationToken);
+
+                    if (response is null || !response.Any())
+                    {
+                        isShowsInfoAvailable = false;
+                        continue;
+                    }
+
+                    showsList.AddRange(response.Select(x => x).ToList());
+
+                    var showIds = GetShowIds(showsList);
+
+                    await _tvShowsCacheService.AddShowIds(showIds, cancellationToken);
+                                       
+                    var batches = GetShowBatches(showsList, ShowBatches);
+
+                    foreach (var batch in batches)
+                    {
+                        var processShowTasks = batch.Select(x => FillShowsWithCasts(x, cancellationToken));
+                        await Task.WhenAll(processShowTasks);
+                    }
+
+                    pageIndex++;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.ShowsUpdatesFailed(ex);
+                throw;
+            }
+        }
+
+        private static List<int> GetShowIds(List<Show> shows)
+        {
+            return shows
+                .Select(s => (int)s.Id)
+                .Distinct()
+                .OrderBy(x => x)
+                .ToList();
+        }
+
+        private async Task FillShowsWithCasts(Show show, CancellationToken cancellationToken)
+        {
+            var getShowResponse = await _tvMazeService.GetCastAsync(show.Id, cancellationToken);            
+
+            if (getShowResponse is null)
+            {
+                return;
+            }
+
+            var showsWithCast = GetShowsWithCasts(show, getShowResponse);
+
+            await _tvShowsCacheService.AddShowWithCasts(showsWithCast, cancellationToken);
+        }
+
+        private static Show GetShowsWithCasts(Show show, IEnumerable<Cast> getShowResponse) =>
+            new()
+            {
+                Id = show.Id,
+                Name = show.Name,
+                Cast = getShowResponse
+                        .Select(cast =>
+                            new Cast
+                            {
+                                Person = new Person
+                                {
+                                    Id = cast.Person.Id,
+                                    Name = cast.Person.Name,
+                                    Birthday = cast.Person.Birthday,
+                                }
+                            })
+                        .ToList()
+            };
+
+        private static IEnumerable<IEnumerable<Show>> GetShowBatches(ICollection<Show> shows, int batchSize)
+        {
+            var total = 0;
+
+            while (total < shows.Count)
+            {
+                yield return shows.Skip(total).Take(batchSize);
+
+                total += batchSize;
+            }
+        }
+    }
+}

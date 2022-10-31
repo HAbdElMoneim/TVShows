@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/.vs/TVShowsAPI
+/src/TVShows.API/.vs/TVShowsAPI
+/src/TVShows.API/bin/Debug/net6.0
+/src/TVShows.API/obj
+/src/TVShows.API/.editorconfig
+/src/TVShows.Caching/bin/Debug/net6.0
+/src/TVShows.Caching/obj
+/src/TVShows.ClientsAdapterService/bin/Debug/net6.0
+/src/TVShows.ClientsAdapterService/obj
+/src/TVShows.Core/bin/Debug/net6.0
+/src/TVShows.Core/obj
+/src/TVShows.UpdateWorkerJob/bin/Debug/net6.0
+/src/TVShows.UpdateWorkerJob/obj
+/Tests/TVShows.API.Tests/.vs/TVShowsAPI.UnitTests
+/Tests/TVShows.API.Tests/bin/Debug/net6.0
+/Tests/TVShows.API.Tests/obj
+/Tests/TVShows.ClientsAdapterService.Tests/bin/Debug/net6.0
+/Tests/TVShows.ClientsAdapterService.Tests/obj
+/Tests/TVShows.UpdateWorkerJob.Tests/bin/Debug/net6.0
+/Tests/TVShows.UpdateWorkerJob.Tests/obj
