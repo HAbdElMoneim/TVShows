@@ -8,7 +8,7 @@ namespace TVShowsUpdateWorkerJob.Services
 {
     public class TVShowsUpdateService : ITVShowsUpdateService
     {
-        private const int ShowBatches = 10;
+        private const int ShowBatches = 10; // TODO:Read from Configurations.
         private readonly ITVMazeService _tvMazeService;
         private readonly ITVShowsCacheService _tvShowsCacheService;
         private readonly ILogger<TVShowsUpdateService> _logger;
@@ -38,13 +38,15 @@ namespace TVShowsUpdateWorkerJob.Services
         public async Task AddNewShowsAsync(CancellationToken cancellationToken)
         {
             var showsList = new List<Show>();
-            var pageIndex = 0;
+            var pageIndex = 0; // TODO: read from cache;
             var isShowsInfoAvailable = true;
 
             try
             {
                 while (isShowsInfoAvailable)
                 {
+                    // TODO: Need to get cast missed data from stored shows ids first[another function].
+
                     var response = await _tvMazeService.GetShowsAsync(pageIndex, cancellationToken);
 
                     if (response is null || !response.Any())
@@ -69,6 +71,8 @@ namespace TVShowsUpdateWorkerJob.Services
 
                     pageIndex++;
                 }
+
+                // TODO: Add last pageIndex value to cache 
             }
             catch (Exception ex)
             {

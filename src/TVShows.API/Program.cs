@@ -43,7 +43,7 @@ if (builder.Configuration.GetValue<bool>("SchedulingConfigurations:Enabled"))
 IAsyncPolicy<HttpResponseMessage> HttpRetryPolicy() => HttpPolicyExtensions
                    .HandleTransientHttpError()
                    .OrResult(msg => msg.StatusCode == HttpStatusCode.TooManyRequests)
-                   .WaitAndRetryAsync(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(int.Parse(builder.Configuration["RetryBaseTimeSec"]), retryAttempt)));
+                   .WaitAndRetryAsync(int.Parse(builder.Configuration["RetryAttempt"]), retryAttempt => TimeSpan.FromSeconds(Math.Pow(int.Parse(builder.Configuration["RetryBaseTimeSec"]), retryAttempt)));
 
 var app = builder.Build();
 
