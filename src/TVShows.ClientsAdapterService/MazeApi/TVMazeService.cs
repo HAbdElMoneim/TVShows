@@ -16,6 +16,12 @@ namespace TVShowsClientsAdapterService.MazeApi
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
+        /// <summary>
+        /// GetShowsAsync
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Show>> GetShowsAsync(int page, CancellationToken cancellationToken)
         {
             try
@@ -38,6 +44,12 @@ namespace TVShowsClientsAdapterService.MazeApi
             }
         }
 
+        /// <summary>
+        /// GetCastAsync
+        /// </summary>
+        /// <param name="showId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<Cast>> GetCastAsync(int showId, CancellationToken cancellationToken)
         {
             try

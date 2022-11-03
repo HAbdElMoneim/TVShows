@@ -88,24 +88,24 @@ namespace TVShowsUpdateWorkerJob.Services
 
         private async Task FillShowsWithCasts(Show show, CancellationToken cancellationToken)
         {
-            var getShowResponse = await _tvMazeService.GetCastAsync(show.Id, cancellationToken);            
+            var getCastResponse = await _tvMazeService.GetCastAsync(show.Id, cancellationToken);            
 
-            if (getShowResponse is null)
+            if (getCastResponse is null)
             {
                 return;
             }
 
-            var showsWithCast = GetShowsWithCasts(show, getShowResponse);
+            var showsWithCast = GetShowsWithCasts(show, getCastResponse);
 
             await _tvShowsCacheService.AddShowWithCasts(showsWithCast, cancellationToken);
         }
 
-        private static Show GetShowsWithCasts(Show show, IEnumerable<Cast> getShowResponse) =>
+        private static Show GetShowsWithCasts(Show show, IEnumerable<Cast> getCastResponse) =>
             new()
             {
                 Id = show.Id,
                 Name = show.Name,
-                Cast = getShowResponse
+                Cast = getCastResponse
                         .Select(cast =>
                             new Cast
                             {
