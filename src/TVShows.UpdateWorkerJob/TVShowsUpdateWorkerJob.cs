@@ -35,8 +35,7 @@ namespace TVShowsUpdateWorkerJob
             cancellationToken.Register(() => _logger.ServiceStopped(typeof(TVShowsUpdateJob).Name));
             do
             {
-                var now = DateTime.Now;
-                if (DateTime.Compare(now, _nextRun) == 1)
+                if (DateTime.Compare(DateTime.Now, _nextRun) == 1)
                 {
                     try
                     {
@@ -44,7 +43,7 @@ namespace TVShowsUpdateWorkerJob
                         await _tvShowsUpdateService.AddNewShowsAsync(cancellationToken);
                         _logger.LogInformation("Worker End at: {time}", DateTimeOffset.Now);
 
-                        _nextRun = _schedule.GetNextOccurrence(now);
+                        _nextRun = _schedule.GetNextOccurrence(DateTime.Now);
                         await Task.Delay(_nextRun - DateTime.Now, cancellationToken);
                     }                    
                     catch (Exception ex)
