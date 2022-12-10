@@ -1,4 +1,4 @@
-﻿namespace TVShowsClientsAdapterService.MazeApi.Configurations
+﻿namespace TVShows.Adapters.MazeApi.Configurations
 {
     public sealed class TVMazeSettings
     {

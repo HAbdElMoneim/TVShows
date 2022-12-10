@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Refit;
+using TVShows.Adapters.MazeApi.Adapter;
+using TVShows.Adapters.Port;
+using TVShows.Application.Ports;
 
-namespace TVShowsClientsAdapterService.MazeApi.Configurations
+namespace TVShows.Adapters.MazeApi.Configurations
 {
     public static class AdapterServiceConfigurations
     {

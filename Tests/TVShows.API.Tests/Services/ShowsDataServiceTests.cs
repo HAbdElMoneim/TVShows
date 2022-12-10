@@ -7,23 +7,23 @@ using System.Threading;
 using System.Threading.Tasks;
 using TVShows.Caching;
 using TVShows.Core.Models;
-using TVShows.API.Services;
 using Xunit;
+using TVShows.Application.ShowsReadData;
 
 namespace TVShows.API.Tests.Services
 {
     public class ShowsDataServiceTests
     {
-        private readonly ShowsDataService _showsDataService;
+        private readonly TVShowsReadDataService _showsDataService;
         private readonly Mock<ITVShowsCacheService> _tvShowsCacheServiceMock;
-        private readonly Mock<ILogger<ShowsDataService>> _loggerMock;
+        private readonly Mock<ILogger<TVShowsReadDataService>> _loggerMock;
 
         public ShowsDataServiceTests()
         {
             _tvShowsCacheServiceMock = new Mock<ITVShowsCacheService>();
-            _loggerMock = new Mock<ILogger<ShowsDataService>>();
+            _loggerMock = new Mock<ILogger<TVShowsReadDataService>>();
 
-            _showsDataService = new ShowsDataService(_tvShowsCacheServiceMock.Object, _loggerMock.Object);
+            _showsDataService = new TVShowsReadDataService(_tvShowsCacheServiceMock.Object, _loggerMock.Object);
         }
 
         [Theory]

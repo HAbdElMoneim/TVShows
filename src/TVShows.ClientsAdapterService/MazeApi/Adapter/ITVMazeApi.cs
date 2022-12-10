@@ -1,7 +1,7 @@
 ﻿using Refit;
-using TVShowsClientsAdapterService.MazeApi.Models;
+using TVShows.Adapters.MazeApi.Models;
 
-namespace TVShowsClientsAdapterService.MazeApi
+namespace TVShows.Adapters.MazeApi.Adapter
 {
     public interface ITVMazeApi
     {

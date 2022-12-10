@@ -1,6 +1,6 @@
 ﻿using TVShows.Core.Models;
 
-namespace TVShowsClientsAdapterService.MazeApi
+namespace TVShows.Application.Ports
 {
     public interface ITVMazeService
     {

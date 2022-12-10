@@ -23,3 +23,5 @@
 /Tests/TVShows.ClientsAdapterService.Tests/obj
 /Tests/TVShows.UpdateWorkerJob.Tests/bin/Debug/net6.0
 /Tests/TVShows.UpdateWorkerJob.Tests/obj
+/src/TVShows.Application/obj
+/src/TVShows.Application/bin/Debug/net6.0

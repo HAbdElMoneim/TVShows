@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using TVShows.Application.Ports;
 using TVShows.Caching;
 using TVShows.Core.Extentions;
 using TVShows.Core.Models;
-using TVShowsClientsAdapterService.MazeApi;
 
-namespace TVShowsUpdateWorkerJob.Services
+namespace TVShows.Application.ShowsUpdateData
 {
     public class TVShowsUpdateService : ITVShowsUpdateService
     {

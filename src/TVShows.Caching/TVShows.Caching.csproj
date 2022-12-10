@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TVShows.Core\TVShows.Core.csproj" />
+    <ProjectReference Include="..\TVShows.Core\TVShows.Domain.csproj" />
   </ItemGroup>
 
 </Project>

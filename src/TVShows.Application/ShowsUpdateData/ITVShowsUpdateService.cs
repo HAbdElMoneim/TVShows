@@ -1,5 +1,5 @@
 ﻿
-namespace TVShowsUpdateWorkerJob.Services
+namespace TVShows.Application.ShowsUpdateData
 {
     /// <summary>
     /// ITVShowsProvider

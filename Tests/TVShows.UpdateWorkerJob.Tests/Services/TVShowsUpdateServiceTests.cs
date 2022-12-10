@@ -1,16 +1,12 @@
-﻿using AutoFixture.Xunit2;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TVShows.Application.Ports;
+using TVShows.Application.ShowsUpdateData;
 using TVShows.Caching;
 using TVShows.Core.Models;
-using TVShowsClientsAdapterService.MazeApi;
-using TVShowsUpdateWorkerJob.Services;
 using Xunit;
 
 namespace TVShows.UpdateWorkerJob.Tests.Services

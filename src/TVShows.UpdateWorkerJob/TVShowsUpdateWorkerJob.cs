@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NCrontab;
+using TVShows.Adapters.MazeApi.Models;
+using TVShows.Application.ShowsUpdateData;
 using TVShows.Core.Extentions;
 using TVShows.Core.Models;
-using TVShowsClientsAdapterService.MazeApi.Models;
 using TVShowsUpdateWorkerJob.Configurations;
-using TVShowsUpdateWorkerJob.Services;
 
 namespace TVShowsUpdateWorkerJob
 {

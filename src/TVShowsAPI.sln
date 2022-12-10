@@ -16,17 +16,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.ClientsAdapterService", "TVShows.ClientsAdapterService\TVShows.ClientsAdapterService.csproj", "{1E31C26B-5FEA-4611-9C46-4E1D105E604E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.Adapters", "TVShows.ClientsAdapterService\TVShows.Adapters.csproj", "{1E31C26B-5FEA-4611-9C46-4E1D105E604E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.ClientsAdapterService.Tests", "..\Tests\TVShows.ClientsAdapterService.Tests\TVShows.ClientsAdapterService.Tests.csproj", "{4CB6738E-1286-425D-836B-3974F49D5D22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9BC4249A-1EB2-4C53-97EF-C9EBB0F2EB3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.Core", "TVShows.Core\TVShows.Core.csproj", "{0F7BB200-136D-4BF9-B558-FD38373D0A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.Domain", "TVShows.Core\TVShows.Domain.csproj", "{0F7BB200-136D-4BF9-B558-FD38373D0A94}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TVShows.Caching", "TVShows.Caching\TVShows.Caching.csproj", "{33B9B21E-65F7-480B-967B-5AB639F28E5A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01568A52-06F4-49A6-8F06-3EE8629864DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TVShows.Application", "TVShows.Application\TVShows.Application.csproj", "{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +68,10 @@ Global
 		{33B9B21E-65F7-480B-967B-5AB639F28E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33B9B21E-65F7-480B-967B-5AB639F28E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33B9B21E-65F7-480B-967B-5AB639F28E5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{4CB6738E-1286-425D-836B-3974F49D5D22} = {9BC4249A-1EB2-4C53-97EF-C9EBB0F2EB3A}
 		{0F7BB200-136D-4BF9-B558-FD38373D0A94} = {01568A52-06F4-49A6-8F06-3EE8629864DF}
 		{33B9B21E-65F7-480B-967B-5AB639F28E5A} = {01568A52-06F4-49A6-8F06-3EE8629864DF}
+		{4BC17E44-FCEC-4E0C-86FC-DFB104A207AA} = {01568A52-06F4-49A6-8F06-3EE8629864DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0BB9FD20-D751-4B4C-83D9-D91B9272397F}

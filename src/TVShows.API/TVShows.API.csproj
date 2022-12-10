@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TVShows.Application\TVShows.Application.csproj" />
     <ProjectReference Include="..\TVShows.Caching\TVShows.Caching.csproj" />
+    <ProjectReference Include="..\TVShows.ClientsAdapterService\TVShows.Adapters.csproj" />
     <ProjectReference Include="..\TVShows.UpdateWorkerJob\TVShows.UpdateWorkerJob.csproj" />
   </ItemGroup>
 

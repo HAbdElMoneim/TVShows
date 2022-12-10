@@ -1,7 +1,7 @@
 
 using TVShows.Core.Models;
 
-namespace TVShowsClientsAdapterService.MazeApi.Models
+namespace TVShows.Adapters.MazeApi.Models
 {
     public class CastResponse
     {

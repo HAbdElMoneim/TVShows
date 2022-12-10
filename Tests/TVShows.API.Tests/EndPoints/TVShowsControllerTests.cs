@@ -9,21 +9,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using TVShows.Core.Models;
 using TVShows.API.EndPoints;
-using TVShows.API.Services;
 using Xunit;
+using TVShows.Application;
+using TVShows.Application.ShowsReadData;
 
 namespace TVShows.API.Tests.EndPoints
 {
     public class TVShowsControllerTests
     {
         private readonly TVShowsController _tvShowsController;
-        private readonly Mock<IShowsDataService> _showsDataServiceMock;
+        private readonly Mock<ITVShowsReadDataService> _showsDataServiceMock;
         private readonly Mock<ILogger<TVShowsController>> _loggerMock;
 
         public TVShowsControllerTests()
         {
             _loggerMock = new Mock<ILogger<TVShowsController>>();
-            _showsDataServiceMock = new Mock<IShowsDataService>();
+            _showsDataServiceMock = new Mock<ITVShowsReadDataService>();
             _tvShowsController = new TVShowsController(_showsDataServiceMock.Object, _loggerMock.Object);
         }
 

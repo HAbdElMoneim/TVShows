@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using Refit;
+using TVShows.Adapters.MazeApi.Adapter;
+using TVShows.Application.Ports;
 using TVShows.Core.Extentions;
 using TVShows.Core.Models;
 
-namespace TVShowsClientsAdapterService.MazeApi
+namespace TVShows.Adapters.Port
 {
     public class TVMazeService : ITVMazeService
     {

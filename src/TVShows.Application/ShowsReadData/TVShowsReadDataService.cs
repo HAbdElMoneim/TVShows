@@ -1,21 +1,21 @@
-﻿using TVShows.Caching;
+﻿using Microsoft.Extensions.Logging;
+using TVShows.Caching;
 using TVShows.Core.Extentions;
 using TVShows.Core.Models;
 
-namespace TVShows.API.Services
+namespace TVShows.Application.ShowsReadData
 {
-    public class ShowsDataService : IShowsDataService
+    public class TVShowsReadDataService : ITVShowsReadDataService
     {
         private readonly ITVShowsCacheService _tVShowsCacheService;
-        private readonly ILogger<ShowsDataService> _logger;
+        private readonly ILogger<TVShowsReadDataService> _logger;
 
-        public ShowsDataService(ITVShowsCacheService tvShowsCacheService, ILogger<ShowsDataService> logger)
+        public TVShowsReadDataService(ITVShowsCacheService tvShowsCacheService, ILogger<TVShowsReadDataService> logger)
         {
             _logger = logger;
             _tVShowsCacheService = tvShowsCacheService;
         }
 
-        // TODO: Getting Data from Database if Cache doesnot contain it.
         /// <summary>
         /// GetShowsDataAsync
         /// </summary>
@@ -32,9 +32,9 @@ namespace TVShows.API.Services
                 {
                     _logger.NoDataAvailable();
 
+
                     return new List<Show>();
                 }
-
                 var showsInfo = GetPaginatedShows(pageIndex, pageSize, showIds, cancellationToken);
 
                 _logger.ShowsRetrievedSuccessfully(showsInfo.Count);

@@ -1,13 +1,14 @@
 using Polly;
 using Polly.Extensions.Http;
 using System.Net;
-using TVShows.API.Services;
 using TVShows.Caching;
 using TVShowsUpdateWorkerJob;
 using TVShowsUpdateWorkerJob.Configurations;
-using TVShowsUpdateWorkerJob.Services;
-using TVShowsClientsAdapterService.MazeApi.Configurations;
-using TVShowsClientsAdapterService.MazeApi;
+using TVShows.Application.ShowsUpdateData;
+using TVShows.Application.ShowsReadData;
+using TVShows.Adapters.MazeApi.Configurations;
+using TVShows.Application.Ports;
+using TVShows.Adapters.Port;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ builder.Services.AddTVMazeAdapter(tvMazeSettings).AddPolicyHandler(HttpRetryPoli
 builder.Services.AddTransient<ITVShowsUpdateService, TVShowsUpdateService>();
 builder.Services.AddTransient<ITVMazeService, TVMazeService>();
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddTransient<IShowsDataService, ShowsDataService>();
+builder.Services.AddTransient<ITVShowsReadDataService, TVShowsReadDataService>();
 builder.Services.AddTransient<ITVShowsCacheService, TVShowsCacheService>();
 
 builder.Services.AddControllers();

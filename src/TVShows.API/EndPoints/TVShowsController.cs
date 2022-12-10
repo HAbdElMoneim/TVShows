@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using TVShows.API.Services;
+using TVShows.Application;
+using TVShows.Application.ShowsReadData;
 
 namespace TVShows.API.EndPoints
 {
@@ -8,10 +9,10 @@ namespace TVShows.API.EndPoints
     [Route("[controller]")]
     public class TVShowsController : ControllerBase
     {
-        private readonly IShowsDataService _showsDataService;
+        private readonly ITVShowsReadDataService _showsDataService;
         private readonly ILogger<TVShowsController> _logger;
 
-        public TVShowsController(IShowsDataService showsDataService, ILogger<TVShowsController> logger)
+        public TVShowsController(ITVShowsReadDataService showsDataService, ILogger<TVShowsController> logger)
         {
             _showsDataService = showsDataService;
             _logger = logger;
